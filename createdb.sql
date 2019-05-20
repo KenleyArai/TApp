@@ -19,29 +19,42 @@ CREATE TABLE leases (
 
 CREATE TABLE tenants (
     user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+    FOREIGN KEY (user_id) REFERENCES users(user_id));
 
 CREATE TABLE managers (
     user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+    FOREIGN KEY (user_id) REFERENCES users(user_id));
 
 CREATE TABLE owners (
     user_id INTEGER,
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+    FOREIGN KEY (user_id) REFERENCES users(user_id));
+
+CREATE TABLE tenant_lease (
+    user_id INT,
+    lease_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (lease_id) REFERENCES leases(lease_id));
+
+CREATE TABLE manager_lease (
+    user_id INT,
+    lease_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (lease_id) REFERENCES leases(lease_id));
+
+CREATE TABLE owner_lease (
+    user_id INT,
+    lease_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (lease_id) REFERENCES leases(lease_id));
 
 CREATE TABLE due_leases (
     user_id INTEGER,
     lease_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (lease_id) REFERENCES leases(lease_id)
-);
+    FOREIGN KEY (lease_id) REFERENCES leases(lease_id));
 
 CREATE TABLE pending_leases (
     user_id INTEGER,
     lease_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (lease_id) REFERENCES leases(lease_id)
-);
+    FOREIGN KEY (lease_id) REFERENCES leases(lease_id));

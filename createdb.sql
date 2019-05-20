@@ -1,3 +1,5 @@
+-- This file only gives an overview of what the tables should look like
+-- The actually queries are executed in src/utils/table_manager.py
 DROP TABLE IF EXISTS users, leases, tenants, managers, owners, due_leases, pending_leases;
 
 CREATE TABLE users (

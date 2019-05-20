@@ -8,8 +8,8 @@ db_string = "postgres://docker:docker@localhost:32769"
 engine = create_engine(db_string)
 database = DB(engine)
 
-database.drop_all_tables()
-database.create_all_tables()
+database.drop_all_tables(log_level=1)
+database.create_all_tables(log_level=1)
 
 app = Flask(__name__)
 api = Api(app)

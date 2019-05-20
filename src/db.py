@@ -6,8 +6,8 @@ class DB:
         self.engine = engine
         self.tm = TableManager()
 
-    def create_all_tables(self):
-        self.tm.create_all_tables(self.engine)
+    def create_all_tables(self, log_level=0):
+        self.tm.create_all_tables(self.engine, log_level)
 
-    def drop_all_tables(self):
-        self.tm.drop_all_tables(self.engine)
+    def drop_all_tables(self, log_level=0):
+        self.tm.drop_all_tables(self.engine, log_level)

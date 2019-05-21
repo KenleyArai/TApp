@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const sendLogin = (event, username, password, setLogin) => {
+const sendLogin = (event, email, password, setLogin) => {
   event.preventDefault();
   fetch("http://localhost:5000/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: username,
+      email: email,
       password: password
     })
   })
@@ -21,19 +21,19 @@ const sendLogin = (event, username, password, setLogin) => {
 };
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [LoggedIn, setLogin] = useState(false);
 
   if (!LoggedIn) {
     return (
-      <form onSubmit={event => sendLogin(event, username, password, setLogin)}>
+      <form onSubmit={event => sendLogin(event, email, password, setLogin)}>
         <label>
-          Username:
+          Email:
           <input
             type="text"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>

@@ -7,9 +7,9 @@ class QueryManager:
         if log_level == 1:
             print("Checking for user: {}".format(email))
 
-        query = "SELECT email FROM users WHERE email='{}'".format(email)
-        result = engine.execute(query).fetchall()
-        return result != []
+        query = "SELECT * FROM users WHERE email='{}'".format(email)
+        result = engine.execute(query).fetchone()
+        return result
 
     @staticmethod
     def create_user(engine, firstname, lastname, email, password, log_level=0):

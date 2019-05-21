@@ -1,6 +1,6 @@
 from utils import TableManager
 
-class DB:
+class DBFactory:
 
     def __init__(self, engine):
         self.engine = engine

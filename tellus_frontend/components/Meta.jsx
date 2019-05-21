@@ -6,10 +6,15 @@ export default () => (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+        rel="stylesheet"
+      />
     </Head>
     <style jsx global={true}>{`
       html {
         box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
       }
 
       *,
@@ -30,6 +35,9 @@ export default () => (
       hr {
         margin: 0;
         padding: 0;
+      }
+      body {
+        background-color: #2e3440;
       }
 
       ul,

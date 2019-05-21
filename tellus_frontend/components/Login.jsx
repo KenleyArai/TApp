@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
-const sendLogin = (event, email, password, setLogin) => {
+const sendLogin = (event, email, password, setAccessToken) => {
   event.preventDefault();
   fetch("http://localhost:5000/login", {
     method: "POST",
@@ -15,19 +16,22 @@ const sendLogin = (event, email, password, setLogin) => {
       return resp;
     })
     .then(resp => resp.json())
-    .then(resp => console.log(resp))
-    .then(() => setLogin(true))
+    .then(resp => setAccessToken(resp["access_token"]))
     .catch(() => console.log("ERROR"));
 };
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [LoggedIn, setLogin] = useState(false);
+  const [accessToken, setAccessToken] = useLocalStorage("accessToken", null);
 
-  if (!LoggedIn) {
+  if (!accessToken) {
     return (
-      <form onSubmit={event => sendLogin(event, email, password, setLogin)}>
+      <form
+        onSubmit={event =>
+          sendLogin(event, email, password, setLogin, setAccessToken)
+        }
+      >
         <label>
           Email:
           <input

@@ -9,6 +9,8 @@ class QueryManager:
 
         query = "SELECT * FROM users WHERE email='{}'".format(email)
         result = engine.execute(query).fetchone()
+        if not result:
+            return (None, None, None, None, None)
         return result
 
     @staticmethod

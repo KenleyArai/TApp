@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useUser from "../hooks/useUser";
+import Router from "next/router";
 
-const sendLogin = (event, email, password, setAccessToken) => {
+const sendLogin = (event, email, password, setUser) => {
   event.preventDefault();
   fetch("http://localhost:5000/login", {
     method: "POST",
@@ -16,22 +17,19 @@ const sendLogin = (event, email, password, setAccessToken) => {
       return resp;
     })
     .then(resp => resp.json())
-    .then(resp => setAccessToken(resp["access_token"]))
+    .then(resp => setUser(resp))
+    .then(() => Router.push("/dashboard"))
     .catch(() => console.log("ERROR"));
 };
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [accessToken, setAccessToken] = useLocalStorage("accessToken", null);
+  const [accessToken, firstname, lastname, user_id, setUser] = useUser();
 
   if (!accessToken) {
     return (
-      <form
-        onSubmit={event =>
-          sendLogin(event, email, password, setLogin, setAccessToken)
-        }
-      >
+      <form onSubmit={event => sendLogin(event, email, password, setUser)}>
         <label>
           Email:
           <input
@@ -54,7 +52,13 @@ const Login = () => {
       </form>
     );
   }
-  return <div>You are logged in!</div>;
+  return (
+    <div>
+      <h3>
+        Hello {firstname} {lastname}
+      </h3>
+    </div>
+  );
 };
 
 export default Login;

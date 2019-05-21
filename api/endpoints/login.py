@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_jwt_extended import create_access_token
 
-def init_login(app, path):
+def init_login(app, path, database):
 
     @app.route(path, methods=['POST'])
     def login():
@@ -13,6 +13,7 @@ def init_login(app, path):
 
         if not username:
             return jsonify({"msg": "Missing username parameter"}), 400
+
         if not password:
             return jsonify({"msg": "Missing password parameter"}), 400
 

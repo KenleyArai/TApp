@@ -1,13 +1,22 @@
 from utils import TableManager
+from utils import QueryManager
 
 class DBFactory:
 
-    def __init__(self, engine):
+    def __init__(self, engine, log_level=0):
         self.engine = engine
         self.tm = TableManager()
+        self.qm = QueryManager()
+        self.log_level = log_level
 
-    def create_all_tables(self, log_level=0):
-        self.tm.create_all_tables(self.engine, log_level)
+    def create_all_tables(self):
+        self.tm.create_all_tables(self.engine, self.log_level)
 
-    def drop_all_tables(self, log_level=0):
-        self.tm.drop_all_tables(self.engine, log_level)
+    def drop_all_tables(self):
+        self.tm.drop_all_tables(self.engine, self.log_level)
+
+    def create_user(self, firstname, lastname, email, password):
+        self.qm.create_user(self.engine, firstname, lastname, email, password)
+
+    def find_user(self, email):
+        return self.qm.find_user(self.engine, email)

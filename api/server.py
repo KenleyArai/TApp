@@ -16,8 +16,8 @@ database.drop_all_tables()
 database.create_all_tables()
 
 # Populating with test users
-database.create_user("test", "Manager", "testManager@test.com", "123")
 database.create_user("test", "Owner", "testOwner@test.com", "123")
+database.create_user("test", "Manager", "testManager@test.com", "123")
 database.create_user("test", "Tenant1", "testTenant1@test.com", "123")
 database.create_user("test", "Tenant2", "testTenant2@test.com", "123")
 database.create_user("test", "Tenant3", "testTenant3@test.com", "123")

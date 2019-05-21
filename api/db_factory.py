@@ -16,7 +16,7 @@ class DBFactory:
         self.tm.drop_all_tables(self.engine, self.log_level)
 
     def create_user(self, firstname, lastname, email, password):
-        self.qm.create_user(self.engine, firstname, lastname, email, password)
+        self.qm.create_user(self.engine, firstname, lastname, email, password, self.log_level)
 
     def find_user(self, email):
-        return self.qm.find_user(self.engine, email)
+        return self.qm.find_user(self.engine, email, self.log_level)

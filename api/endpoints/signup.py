@@ -23,11 +23,13 @@ def init_signup(app, path, database):
         if not password:
             return jsonify({"msg": "Missing password parameter"}), 400
 
-        if not database.find_user(email):
+        if database.find_user(email) == (None, None, None, None, None):
             database.create_user(firstname, lastname, email, password)
         else:
             return jsonify({"msg": "Email already in use"}), 400
 
+        firstname, lastname, _, _, user_id = database.find_user(email)
         # Identity can be any data that is json serializable
         access_token = create_access_token(identity=email)
-        return jsonify(access_token=access_token), 200
+        ret = {'access_token': access_token, 'firstname': firstname, 'lastname': lastname, 'user_id': user_id}
+        return jsonify(ret), 200

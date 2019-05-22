@@ -7,7 +7,7 @@ export default () => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta charSet="utf-8" />
       <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+        href="https://fonts.googleapis.com/css?family=Open+Sans|Pacifico&display=swap"
         rel="stylesheet"
       />
     </Head>
@@ -35,7 +35,9 @@ export default () => (
       hr {
         margin: 0;
         padding: 0;
+        font-family: "Pacifico", cursive;
       }
+
       body {
         background-color: #2e3440;
       }

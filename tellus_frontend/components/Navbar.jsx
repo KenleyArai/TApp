@@ -29,6 +29,13 @@ const Navbar = ({ links }) => {
           Welcome {firstname} {lastname},{" "}
           <a onClick={() => signout(setUser)}>{"Sign Out"}</a>
         </li>
+        <style jsx>{`
+          a {
+            color: #5e81ac;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        `}</style>
       </ul>
     );
   }
@@ -44,6 +51,13 @@ const Navbar = ({ links }) => {
           <a>{"Sign Up"}</a>
         </Link>
       </li>
+      <style jsx>{`
+        a {
+          color: #5e81ac;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      `}</style>
     </ul>
   );
 };

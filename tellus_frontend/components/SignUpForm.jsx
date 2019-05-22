@@ -49,7 +49,7 @@ const SignUpForm = () => {
   const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [emailCheck, setError] = useState(true);
+  const [errorCheck, setError] = useState(true);
   const [accessToken, fn, ls, user_id, setUser] = useUser();
   return (
     <div>
@@ -114,7 +114,7 @@ const SignUpForm = () => {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      {emailCheck ? emailCheck : ""}
+      {errorCheck ? errorCheck : ""}
     </div>
   );
 };

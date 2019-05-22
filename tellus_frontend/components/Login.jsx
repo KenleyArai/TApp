@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useUser from "../hooks/useUser";
 import Router from "next/router";
 
-const sendLogin = (event, email, password, setUser) => {
+const sendLogin = (event, email, password, setUser, setError) => {
   event.preventDefault();
   fetch("http://localhost:5000/login", {
     method: "POST",
@@ -13,7 +13,10 @@ const sendLogin = (event, email, password, setUser) => {
     })
   })
     .then(resp => {
-      if (!resp.ok) throw Error(resp.statusText);
+      if (!resp.ok) {
+        resp.json().then(obj => setError(obj.msg));
+        throw Error(resp.statusText);
+      }
       return resp;
     })
     .then(resp => resp.json())
@@ -26,30 +29,37 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accessToken, firstname, lastname, user_id, setUser] = useUser();
-
+  const [errorCheck, setError] = useState(true);
   if (!accessToken) {
     return (
-      <form onSubmit={event => sendLogin(event, email, password, setUser)}>
-        <label>
-          Email:
-          <input
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="text"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div>
+        <form
+          onSubmit={event =>
+            sendLogin(event, email, password, setUser, setError)
+          }
+        >
+          <label>
+            Email:
+            <input
+              type="text"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="text"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        {errorCheck ? errorCheck : ""}
+      </div>
     );
   }
   return (

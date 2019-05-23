@@ -20,3 +20,12 @@ class DBFactory:
 
     def find_user(self, email):
         return self.qm.find_user(self.engine, email, self.log_level)
+
+    def create_owner(self, user_id):
+        self.qm.create_owner(self.engine, user_id, self.log_level)
+
+    def create_manager(self, user_id):
+        self.qm.create_manager(self.engine, user_id, self.log_level)
+
+    def create_tenant(self, user_id):
+        self.qm.create_tenant(self.engine, user_id, self.log_level)

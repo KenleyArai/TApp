@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useUser from "../hooks/useUser";
 import Router from "next/router";
+import FormInput from "./FormInput";
 
 const sendLogin = (event, email, password, setUser, setError) => {
   event.preventDefault();
@@ -30,6 +31,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [accessToken, firstname, lastname, user_id, setUser] = useUser();
   const [errorCheck, setError] = useState(true);
+
   if (!accessToken) {
     return (
       <div>
@@ -38,15 +40,8 @@ const Login = () => {
             sendLogin(event, email, password, setUser, setError)
           }
         >
-          <label>
-            Email:
-            <input
-              type="text"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-          </label>
+          <FormInput title={"Email"} value={email} onChange={setEmail} />
+
           <label>
             Password:
             <input

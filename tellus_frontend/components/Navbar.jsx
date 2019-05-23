@@ -14,6 +14,25 @@ const signout = setUser => {
   Router.push("/");
 };
 
+const NavbarStyle = () => {
+  return (
+    <style jsx>{`
+      a {
+        color: #5e81ac;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      ul {
+        display: flex;
+        flex-direction: row;
+        background-color: #4c566a;
+        padding: 1em;
+        justify-content: space-between;
+      }
+    `}</style>
+  );
+};
+
 const Navbar = ({ links }) => {
   const [accessToken, firstname, lastname, user_id, setUser] = useUser();
 
@@ -29,20 +48,7 @@ const Navbar = ({ links }) => {
           Welcome {firstname} {lastname},{" "}
           <a onClick={() => signout(setUser)}>{"Sign Out"}</a>
         </li>
-        <style jsx>{`
-          a {
-            color: #5e81ac;
-            text-decoration: underline;
-            cursor: pointer;
-          }
-          ul {
-            display: flex;
-            flex-direction: row;
-            background-color: #4c566a;
-            padding: 1em;
-            justify-content: space-between;
-          }
-        `}</style>
+        <NavbarStyle />
       </ul>
     );
   }
@@ -58,20 +64,7 @@ const Navbar = ({ links }) => {
           <a>{"Sign Up"}</a>
         </Link>
       </li>
-      <style jsx>{`
-        a {
-          color: #88c0d0;
-          text-decoration: underline;
-          cursor: pointer;
-        }
-        ul {
-          display: flex;
-          flex-direction: row;
-          background-color: #4c566a;
-          padding: 1em;
-          justify-content: space-between;
-        }
-      `}</style>
+      <NavbarStyle />
     </ul>
   );
 };

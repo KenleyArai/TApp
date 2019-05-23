@@ -23,3 +23,27 @@ class QueryManager:
         password = sha384(password.encode()).hexdigest()
         query = "INSERT INTO users(firstname, lastname, email, password) VALUES('{}', '{}', '{}', '{}');".format(firstname, lastname, email, password)
         engine.execute(query)
+
+    @staticmethod
+    def create_owner(engine, user_id, log_level=0):
+        if log_level == 1:
+            print("\tCreating owner with user_id: {}".format(user_id))
+
+        query = "INSERT INTO owners (user_id) VALUES ({})".format(user_id)
+        engine.execute(query)
+
+    @staticmethod
+    def create_manager(engine, user_id, log_level=0):
+        if log_level == 1:
+            print("\tCreating manager with user_id: {}".format(user_id))
+
+        query = "INSERT INTO managers (user_id) VALUES ({})".format(user_id)
+        engine.execute(query)
+
+    @staticmethod
+    def create_tenant(engine, user_id, log_level=0):
+        if log_level == 1:
+            print("\tCreating tenant with user_id: {}".format(user_id))
+
+        query = "INSERT INTO tenants (user_id) VALUES ({})".format(user_id)
+        engine.execute(query)

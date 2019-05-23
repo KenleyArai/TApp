@@ -17,10 +17,17 @@ database.create_all_tables()
 
 # Populating with test users
 database.create_user("test", "Owner", "testOwner@test.com", "123")
+database.create_owner(1)
 database.create_user("test", "Manager", "testManager@test.com", "123")
+database.create_manager(2)
 database.create_user("test", "Tenant1", "testTenant1@test.com", "123")
+database.create_tenant(3)
 database.create_user("test", "Tenant2", "testTenant2@test.com", "123")
+database.create_tenant(4)
 database.create_user("test", "Tenant3", "testTenant3@test.com", "123")
+database.create_tenant(5)
+
+database.create_user("test", "Empty", "testTenant4@test.com", "123")
 
 app = Flask(__name__)
 api = Api(app)

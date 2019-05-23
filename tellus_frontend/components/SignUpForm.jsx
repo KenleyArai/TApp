@@ -52,6 +52,7 @@ const SignUpForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorCheck, setError] = useState(true);
   const [accessToken, fn, ls, user_id, setUser] = useUser();
+
   return (
     <div>
       <form

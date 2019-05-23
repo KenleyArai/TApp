@@ -26,6 +26,6 @@ def init_login(app, path, database):
             return jsonify({"msg": "Bad username or password"}), 401
 
         # Identity can be any data that is json serializable
-        access_token = create_access_token(identity=email)
+        access_token = create_access_token(identity=user_id)
         ret = {'access_token': access_token, 'firstname': firstname, 'lastname': lastname, 'user_id': user_id}
         return jsonify(ret), 200

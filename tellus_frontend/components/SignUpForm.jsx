@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useUser from "../hooks/useUser";
 import Router from "next/router";
+import FormInput from "./FormInput";
 
 const checkPassword = (password, confirmPassword) =>
   password === confirmPassword;
@@ -15,7 +16,7 @@ const sendSignUp = (
   setError,
   setUser
 ) => {
-  event.preventDefault();
+  event.preventDefault(); // Stops from submitting to a new page
   if (!checkPassword(password, confirmPassword)) {
     setError("Emails do not match");
   } else {
@@ -67,51 +68,23 @@ const SignUpForm = () => {
           )
         }
       >
-        <label>
-          Email:
-          <input
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Firstname:
-          <input
-            type="text"
-            value={firstname}
-            onChange={e => setFirstname(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Lastname:
-          <input
-            type="text"
-            value={lastname}
-            onChange={e => setLastname(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="text"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password:
-          <input
-            type="text"
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
+        <FormInput title={"Email"} value={email} onChange={setEmail} />
+        <FormInput
+          title={"First Name"}
+          value={firstname}
+          onChange={setFirstname}
+        />
+        <FormInput
+          title={"Last Name"}
+          value={lastname}
+          onChange={setLastname}
+        />
+        <FormInput title={"Password"} value={password} onChange={setPassword} />
+        <FormInput
+          title={"Confrim Password"}
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+        />
         <input type="submit" value="Submit" />
       </form>
       {errorCheck ? errorCheck : ""}

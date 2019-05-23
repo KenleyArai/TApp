@@ -35,6 +35,13 @@ const Navbar = ({ links }) => {
             text-decoration: underline;
             cursor: pointer;
           }
+          ul {
+            display: flex;
+            flex-direction: row;
+            background-color: #4c566a;
+            padding: 1em;
+            justify-content: space-between;
+          }
         `}</style>
       </ul>
     );
@@ -53,9 +60,16 @@ const Navbar = ({ links }) => {
       </li>
       <style jsx>{`
         a {
-          color: #5e81ac;
+          color: #88c0d0;
           text-decoration: underline;
           cursor: pointer;
+        }
+        ul {
+          display: flex;
+          flex-direction: row;
+          background-color: #4c566a;
+          padding: 1em;
+          justify-content: space-between;
         }
       `}</style>
     </ul>

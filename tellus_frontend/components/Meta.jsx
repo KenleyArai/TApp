@@ -35,11 +35,16 @@ export default () => (
       hr {
         margin: 0;
         padding: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
         font-family: "Pacifico", cursive;
       }
 
       body {
-        background-color: #2e3440;
+        background-color: #d8dee9;
       }
 
       ul,

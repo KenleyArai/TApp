@@ -47,3 +47,32 @@ class QueryManager:
 
         query = "INSERT INTO tenants (user_id) VALUES ({})".format(user_id)
         engine.execute(query)
+
+    @staticmethod
+    def get_roles(engine, user_id, log_level=0):
+        if log_level == 1:
+            print("\tFinding roles for user_id: {}".format(user_id))
+
+        query = """
+                SELECT
+                    t.user_id as tenant,
+                    m.user_id as manager,
+                    o.user_id as owner
+                FROM
+                    users AS u
+                LEFT OUTER JOIN
+                    tenants AS t
+                ON u.user_id = t.user_id
+                LEFT OUTER JOIN
+                    managers as m
+                ON u.user_id = m.user_id
+                LEFT OUTER JOIN
+                    owners as o
+                ON u.user_id = o.user_id
+                WHERE u.user_id = {};
+            """.format(user_id)
+        roles = engine.execute(query).fetchone()
+        if log_level == 1:
+            print("\tFound roles: {}".format(roles))
+
+        return roles

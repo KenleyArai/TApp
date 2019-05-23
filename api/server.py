@@ -27,7 +27,7 @@ database.create_tenant(4)
 database.create_user("test", "Tenant3", "testTenant3@test.com", "123")
 database.create_tenant(5)
 
-database.create_user("test", "Empty", "testTenant4@test.com", "123")
+database.create_user("test", "Empty", "TestUser@test.com", "123")
 
 app = Flask(__name__)
 api = Api(app)

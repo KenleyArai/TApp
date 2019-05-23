@@ -29,3 +29,6 @@ class DBFactory:
 
     def create_tenant(self, user_id):
         self.qm.create_tenant(self.engine, user_id, self.log_level)
+
+    def get_roles(self, user_id):
+        return self.qm.get_roles(self.engine, user_id, self.log_level)
